@@ -13,8 +13,10 @@ export default {
     },
     extend: {
       fontFamily: {
-        sans: ['Inter', 'sans-serif'],
-        display: ['Bebas Neue', 'sans-serif'],
+        sans: ['Inter', 'Poppins', 'sans-serif'],
+        serif: ['Playfair Display', 'Georgia', 'serif'],
+        display: ['Playfair Display', 'Georgia', 'serif'],
+        body: ['Poppins', 'Inter', 'sans-serif'],
       },
       colors: {
         border: "hsl(var(--border))",

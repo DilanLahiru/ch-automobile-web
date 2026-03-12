@@ -7,6 +7,7 @@ import { Wrench, Calendar, Clock, ArrowLeft, LogOut, Trash2 } from "lucide-react
 import { toast } from "../hooks/use-toast";
 import { format } from "date-fns";
 import { getAllAppointments, deleteAppointment, selectAppointment } from "../features/appointmentSlice";
+import Logo from "../assets/Logo.png";
 
 const Appointments = () => {
   const dispatch = useDispatch();
@@ -76,9 +77,9 @@ const Appointments = () => {
     <div className="min-h-screen bg-background">
       {/* Header */}
       <header className="bg-card border-b border-border">
-        <div className="container mx-auto px-4">
-          <div className="flex items-center justify-between h-20">
-            <a href="/" className="flex items-center gap-3 group">
+        <div className="container mx-auto">
+          <div className="flex items-center h-16">
+            {/* <a href="/" className="flex items-center gap-3 group">
               <div className="w-12 h-12 rounded-lg bg-gradient-primary flex items-center justify-center shadow-glow group-hover:scale-105 transition-transform">
                 <Wrench className="w-6 h-6 text-primary-foreground" />
               </div>
@@ -86,8 +87,9 @@ const Appointments = () => {
                 <span className="font-display text-2xl text-foreground tracking-wide">CH</span>
                 <span className="font-display text-2xl text-gradient tracking-wide"> AUTOMOBILE</span>
               </div>
-            </a>
-            <div className="flex items-center gap-4">
+            </a> */}
+            <img src={Logo} alt="CH Automobile Logo" className="w-60 rounded-lg" />
+            {/* <div className="flex items-center gap-4">
               <span className="text-muted-foreground text-sm hidden sm:block">
                 {user?.email}
               </span>
@@ -95,7 +97,7 @@ const Appointments = () => {
                 <LogOut className="w-4 h-4 mr-2" />
                 Logout
               </Button>
-            </div>
+            </div> */}
           </div>
         </div>
       </header>
@@ -105,13 +107,13 @@ const Appointments = () => {
         <div className="mb-8">
           <a
             href="/"
-            className="inline-flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors mb-4"
+            className="inline-flex items-center gap-2 text-muted-foreground hover:text-cyan-900 hover:font-semibold transition-colors mb-4"
           >
             <ArrowLeft className="w-4 h-4" />
             Back to Home
           </a>
-          <h1 className="font-display text-5xl text-foreground">
-            MY <span className="text-gradient">APPOINTMENTS</span>
+          <h1 className="font-display text-4xl text-cyan-800">
+            MY <span className="text-cyan-800">APPOINTMENTS</span>
           </h1>
           <p className="text-muted-foreground mt-2">
             View and manage your service appointments
@@ -154,10 +156,10 @@ const Appointments = () => {
                   {/* Left Side - Appointment Details */}
                   <div className="flex-1 space-y-4">
                     <div className="flex items-center gap-3">
-                      <h3 className="font-display text-xl text-foreground">
+                      <h3 className="font-sans text-lg text-foreground">
                         {appointment.serviceType || appointment.service}
                       </h3>
-                      <Badge className={getStatusColor(appointment.status)}>
+                      <Badge className={getStatusColor(appointment.status) + " uppercase"}>
                         {appointment.status}
                       </Badge>
                     </div>
@@ -165,16 +167,16 @@ const Appointments = () => {
                     {/* Date and Time Info */}
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                       <div className="flex items-center gap-2 text-sm">
-                        <Calendar className="w-4 h-4 text-primary" />
+                        <Calendar className="w-4 h-4 text-cyan-800" />
                         <span className="text-muted-foreground">Date:</span>
-                        <span className="text-foreground font-medium">
+                        <span className="text-xs font-semibold">
                           {format(new Date(appointment.appointmentDate || appointment.appointment_date), "PPP")}
                         </span>
                       </div>
                       <div className="flex items-center gap-2 text-sm">
-                        <Clock className="w-4 h-4 text-primary" />
+                        <Clock className="w-4 h-4 text-cyan-800" />
                         <span className="text-muted-foreground">Time:</span>
-                        <span className="text-foreground font-medium">
+                        <span className="text-xs font-semibold">
                           {appointment.appointmentTime || appointment.appointment_time || "Not specified"}
                         </span>
                       </div>
@@ -214,7 +216,7 @@ const Appointments = () => {
 
                     {/* Booking Date */}
                     <div className="text-xs text-muted-foreground pt-2">
-                      Booked on
+                      Booked on Website
                       {/* Booked on {format(new Date(appointment.createdAt || appointment.created_at), "PPP")} */}
                     </div>
                   </div>
@@ -223,11 +225,11 @@ const Appointments = () => {
                   <Button
                     variant="outline"
                     size="sm"
-                    className="text-destructive hover:bg-destructive hover:text-destructive-foreground self-start lg:self-auto"
+                    className="text-cyan-700 hover:bg-destructive hover:text-destructive-foreground border-cyan-700 hover:border-white/50 self-start lg:self-auto"
                     onClick={() => handleDelete(appointment._id)}
                   >
                     <Trash2 className="w-4 h-4 mr-2" />
-                    Cancel Appointment
+                    Remove
                   </Button>
                 </div>
               </div>

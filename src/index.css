@@ -2,46 +2,46 @@
 @tailwind components;
 @tailwind utilities;
 
-@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
 @layer base {
   :root {
-    --background: 220 15% 8%;
-    --foreground: 0 0% 95%;
+    --background: 0 0% 100%;
+    --foreground: 209 100% 21%;
 
-    --card: 220 15% 12%;
-    --card-foreground: 0 0% 95%;
+    --card: 209 50% 96%;
+    --card-foreground: 209 100% 21%;
 
-    --popover: 220 15% 10%;
-    --popover-foreground: 0 0% 95%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 209 100% 21%;
 
-    --primary: 24 100% 50%;
+    --primary: 45 100% 50%;
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 220 15% 18%;
-    --secondary-foreground: 0 0% 90%;
+    --secondary: 209 100% 31%;
+    --secondary-foreground: 0 0% 100%;
 
-    --muted: 220 15% 20%;
-    --muted-foreground: 220 10% 60%;
+    --muted: 209 50% 50%;
+    --muted-foreground: 209 50% 40%;
 
-    --accent: 24 100% 50%;
+    --accent: 45 100% 50%;
     --accent-foreground: 0 0% 100%;
 
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 220 15% 20%;
-    --input: 220 15% 15%;
-    --ring: 24 100% 50%;
+    --border: 209 50% 90%;
+    --input: 0 0% 100%;
+    --ring: 45 100% 50%;
 
     --radius: 0.75rem;
 
     /* Custom tokens */
-    --gradient-primary: linear-gradient(135deg, hsl(24 100% 50%), hsl(35 100% 55%));
-    --gradient-dark: linear-gradient(180deg, hsl(220 15% 8%), hsl(220 15% 5%));
-    --gradient-card: linear-gradient(145deg, hsl(220 15% 14%), hsl(220 15% 10%));
-    --shadow-glow: 0 0 40px hsl(24 100% 50% / 0.3);
-    --shadow-card: 0 10px 40px hsl(0 0% 0% / 0.4);
+    /* --gradient-primary: linear-gradient(135deg, hsl(189, 92%, 39%), hsl(184, 96%, 30%)); */
+    --gradient-dark: linear-gradient(180deg, hsl(209 100% 31%), hsl(209 100% 26%));
+    --gradient-card: linear-gradient(145deg, hsl(209 50% 96%), hsl(209 50% 93%));
+    --shadow-glow: 0 0 40px hsl(45 100% 50% / 0.2);
+    --shadow-card: 0 10px 40px hsl(209 100% 21% / 0.1);
   }
 }
 
@@ -51,13 +51,75 @@
   }
 
   body {
-    @apply bg-background text-foreground font-sans antialiased;
-    font-family: 'Inter', sans-serif;
+    @apply bg-background text-foreground antialiased;
+    font-family: 'Inter', 'Poppins', sans-serif;
+    font-weight: 400;
+    line-height: 1.6;
   }
 
+  /* Professional heading styles */
   h1, h2, h3, h4, h5, h6 {
-    font-family: 'Bebas Neue', sans-serif;
-    letter-spacing: 0.05em;
+    font-family: 'Playfair Display', Georgia, serif;
+    font-weight: 700;
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+  }
+
+  h1 {
+    @apply text-4xl sm:text-5xl lg:text-6xl font-bold;
+    font-weight: 800;
+  }
+
+  h2 {
+    @apply text-3xl sm:text-4xl lg:text-5xl font-bold;
+    font-weight: 700;
+  }
+
+  h3 {
+    @apply text-2xl sm:text-3xl font-bold;
+    font-weight: 700;
+  }
+
+  h4 {
+    @apply text-xl sm:text-2xl font-bold;
+    font-weight: 600;
+  }
+
+  h5 {
+    @apply text-lg font-semibold;
+    font-weight: 600;
+  }
+
+  h6 {
+    @apply text-base font-semibold;
+    font-weight: 600;
+  }
+
+  /* Professional body text */
+  p {
+    font-family: 'Inter', 'Poppins', sans-serif;
+    @apply text-base leading-relaxed;
+  }
+
+  /* Professional link styles */
+  a {
+    font-family: inherit;
+  }
+
+  /* Professional button text */
+  button, [role="button"] {
+    font-family: 'Poppins', 'Inter', sans-serif;
+    font-weight: 600;
+  }
+
+  /* Input and form elements */
+  input, textarea, select {
+    font-family: 'Inter', 'Poppins', sans-serif;
+  }
+
+  /* Code and pre styles */
+  code, pre {
+    font-family: 'Fira Code', 'Monaco', monospace;
   }
 }
 
@@ -87,6 +149,64 @@
     box-shadow: var(--shadow-card);
   }
 
+  /* Professional typography utilities */
+  .font-serif {
+    font-family: 'Playfair Display', Georgia, serif;
+  }
+
+  .font-display {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+  }
+
+  .font-body {
+    font-family: 'Inter', 'Poppins', sans-serif;
+    font-weight: 400;
+  }
+
+  .font-brand {
+    font-family: 'Poppins', 'Inter', sans-serif;
+    font-weight: 600;
+  }
+
+  .text-display {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: clamp(1.875rem, 5vw, 4rem);
+    font-weight: 700;
+    line-height: 1.2;
+  }
+
+  .text-heading-1 {
+    font-family: 'Playfair Display', Georgia, serif;
+    @apply text-4xl sm:text-5xl lg:text-6xl font-bold;
+  }
+
+  .text-heading-2 {
+    font-family: 'Playfair Display', Georgia, serif;
+    @apply text-3xl sm:text-4xl lg:text-5xl font-bold;
+  }
+
+  .text-heading-3 {
+    font-family: 'Playfair Display', Georgia, serif;
+    @apply text-2xl sm:text-3xl font-bold;
+  }
+
+  .text-body {
+    font-family: 'Inter', 'Poppins', sans-serif;
+    @apply text-base leading-relaxed;
+  }
+
+  .text-small {
+    font-family: 'Inter', 'Poppins', sans-serif;
+    @apply text-sm leading-relaxed;
+  }
+
+  .text-tiny {
+    font-family: 'Inter', 'Poppins', sans-serif;
+    @apply text-xs;
+  }
+
   .animate-float {
     animation: float 6s ease-in-out infinite;
   }
@@ -107,9 +227,37 @@
 
 @keyframes pulse-glow {
   0%, 100% {
-    box-shadow: 0 0 20px hsl(24 100% 50% / 0.3);
+    box-shadow: 0 0 20px hsl(45 100% 50% / 0.3);
   }
   50% {
-    box-shadow: 0 0 40px hsl(24 100% 50% / 0.5);
+    box-shadow: 0 0 40px hsl(45 100% 50% / 0.5);
+  }
+}
+
+@keyframes spin-slow {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@layer utilities {
+  .animate-spin-slow {
+    animation: spin-slow 3s linear infinite;
+  }
+
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
   }
 }

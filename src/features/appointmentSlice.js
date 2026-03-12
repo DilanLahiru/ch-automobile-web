@@ -16,6 +16,9 @@ export const getAllAppointments = createAsyncThunk(
       });
       return response.data;
     } catch (error) {
+      console.log('====================================');
+      console.log(error.response);
+      console.log('====================================');
       return rejectWithValue(error.response?.data?.message || "Failed to fetch appointments");
     }
   }

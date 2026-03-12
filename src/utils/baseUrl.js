@@ -16,4 +16,7 @@ export const API_PATH = {
     DELETE: "/api/appointment/delete",
     GET_BY_ID: "/api/appointment/get-by-customer-id",
   },
+  SERVICE_RECORD: {
+    GET_RECORDS_BY_ID: "/api/service-record/load",
+  }
 };

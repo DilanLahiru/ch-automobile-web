@@ -1,20 +1,13 @@
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import { Button } from "../components/ui/button";
-import { Input } from "../components/ui/input";
-import { Wrench, Mail, Lock, User, ArrowLeft } from "lucide-react";
-import { toast } from "../hooks/use-toast";
-import { signinUser, signupUser, selectAuth } from "../features/authSlice";
+import { useSelector } from "react-redux";
+import { selectAuth } from "../features/authSlice";
+import AuthModal from "../components/AuthModal";
+import { Wrench, ArrowLeft } from "lucide-react";
 
 const Auth = () => {
-  const [isLogin, setIsLogin] = useState(true);
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [fullName, setFullName] = useState("");
-  const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { loading, error, isAuthenticated } = useSelector(selectAuth);
+  const { isAuthenticated } = useSelector(selectAuth);
 
   useEffect(() => {
     if (isAuthenticated) {
@@ -22,178 +15,86 @@ const Auth = () => {
     }
   }, [isAuthenticated, navigate]);
 
-  const validateEmail = (email) => {
-    const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return re.test(email);
-  };
-
-  const handleAuth = async (e) => {
-    e.preventDefault();
-    
-    if (!validateEmail(email)) {
-      toast({
-        title: "Invalid Email",
-        description: "Please enter a valid email address.",
-        variant: "destructive",
-      });
-      return;
-    }
-
-    if (password.length < 6) {
-      toast({
-        title: "Password Too Short",
-        description: "Password must be at least 6 characters.",
-        variant: "destructive",
-      });
-      return;
-    }
-
-    try {
-      if (isLogin) {
-        const response =await dispatch(signinUser({ email, password })).unwrap();
-        console.log(response);
-        if(response.status === 200){
-          toast({
-            title: "Welcome back!",
-            description: "You have successfully logged in.",
-          });
-          navigate("/appointments");
-        }
-      } else {
-        if (!fullName.trim()) {
-          toast({
-            title: "Name Required",
-            description: "Please enter your full name.",
-            variant: "destructive",
-          });
-          return;
-        }
-
-        await dispatch(signupUser({ email, password, fullName })).unwrap();
-        toast({
-          title: "Account Created!",
-          description: "Welcome to CH Automobile. You can now view your appointments.",
-        });
-        navigate("/appointments");
-      }
-    } catch (error) {
-      let message = error || "An error occurred";
-      if (typeof error === "string" && error.includes("already")) {
-        message = "This email is already registered. Please login instead.";
-      }
-      toast({
-        title: "Error",
-        description: message,
-        variant: "destructive",
-      });
-    }
-  };
-
   return (
-    <div className="min-h-screen bg-gradient-dark flex items-center justify-center px-4">
-      <div className="w-full max-w-md">
+    <div className="min-h-screen bg-gradient-to-b from-white via-slate-50 to-white flex items-center justify-center px-4 relative overflow-hidden pt-24">
+      {/* Background Elements */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <div className="absolute top-0 right-0 w-96 h-96 bg-cyan-600/10 rounded-full blur-3xl animate-pulse opacity-80" />
+        <div className="absolute bottom-0 left-0 w-80 h-80 bg-yellow-400/10 rounded-full blur-3xl animation-pulse-slow" />
+        <div className="absolute top-1/2 right-1/4 w-64 h-64 bg-cyan-400/5 rounded-full blur-3xl animation-float" />
+      </div>
+
+      {/* Grid Pattern Background */}
+      <div className="absolute inset-0 bg-grid-pattern opacity-3" />
+
+      <div className="relative z-10">
+        {/* Logo Section */}
         <div className="text-center mb-8">
-          <a href="/" className="inline-flex items-center gap-3 group mb-6">
-            <div className="w-12 h-12 rounded-lg bg-gradient-primary flex items-center justify-center shadow-glow group-hover:scale-105 transition-transform">
-              <Wrench className="w-6 h-6 text-primary-foreground" />
+          <a href="/" className="inline-flex items-center gap-3 group mb-8 hover:opacity-80 transition-opacity">
+            <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-cyan-600 to-cyan-800 flex items-center justify-center shadow-lg group-hover:shadow-cyan-500/30 group-hover:scale-110 transition-all duration-300">
+              <Wrench className="w-7 h-7 text-white" />
             </div>
             <div>
-              <span className="font-display text-2xl text-foreground tracking-wide">CH</span>
-              <span className="font-display text-2xl text-gradient tracking-wide"> AUTOMOBILE</span>
+              <p className="font-display text-2xl text-cyan-700 font-bold tracking-wide">CH</p>
+              <p className="font-display text-xs text-yellow-500 font-bold uppercase tracking-widest">Automobile</p>
             </div>
           </a>
-          <h1 className="font-display text-4xl text-foreground mt-4">
-            {isLogin ? "WELCOME BACK" : "CREATE ACCOUNT"}
-          </h1>
-          <p className="text-muted-foreground mt-2">
-            {isLogin ? "Sign in to manage your appointments" : "Join us to book your service"}
-          </p>
         </div>
 
-        <div className="bg-card rounded-2xl p-8 border border-border shadow-card">
-          <form onSubmit={handleAuth} className="space-y-5">
-            {!isLogin && (
-              <div>
-                <label className="block text-sm font-medium text-muted-foreground mb-2">
-                  Full Name
-                </label>
-                <div className="relative">
-                  <User className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-muted-foreground" />
-                  <Input
-                    type="text"
-                    placeholder="John Doe"
-                    value={fullName}
-                    onChange={(e) => setFullName(e.target.value)}
-                    className="pl-10 bg-input border-border focus:border-primary"
-                  />
-                </div>
-              </div>
-            )}
+        {/* Auth Modal */}
+        <AuthModal
+          isOpen={true}
+          onOpenChange={() => navigate("/")}
+          onSuccess={() => navigate("/appointments")}
+        />
 
-            <div>
-              <label className="block text-sm font-medium text-muted-foreground mb-2">
-                Email
-              </label>
-              <div className="relative">
-                <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-muted-foreground" />
-                <Input
-                  type="email"
-                  placeholder="john@example.com"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  className="pl-10 bg-input border-border focus:border-primary"
-                />
-              </div>
-            </div>
-
-            <div>
-              <label className="block text-sm font-medium text-muted-foreground mb-2">
-                Password
-              </label>
-              <div className="relative">
-                <Lock className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-muted-foreground" />
-                <Input
-                  type="password"
-                  placeholder="••••••••"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  className="pl-10 bg-input border-border focus:border-primary"
-                />
-              </div>
-            </div>
-
-            <Button
-              type="submit"
-              variant="hero"
-              size="xl"
-              className="w-full"
-              disabled={loading}
-            >
-              {loading ? "Please wait..." : isLogin ? "Sign In" : "Create Account"}
-            </Button>
-          </form>
-
-          <div className="mt-6 text-center">
-            <button
-              type="button"
-              onClick={() => setIsLogin(!isLogin)}
-              className="text-primary hover:underline text-sm font-medium"
-            >
-              {isLogin ? "Don't have an account? Sign up" : "Already have an account? Sign in"}
-            </button>
-          </div>
-        </div>
-
-        <div className="mt-6 text-center">
+        {/* Back to Home Link */}
+        <div className="mt-8 text-center">
           <a
             href="/"
-            className="inline-flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors"
+            className="inline-flex items-center gap-2 text-gray-600 hover:text-cyan-700 font-semibold text-sm transition-all duration-300 group hover:gap-3"
           >
-            <ArrowLeft className="w-4 h-4" />
+            <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
             Back to Home
           </a>
         </div>
       </div>
+
+
+      <style>{`
+        @keyframes animation-float {
+          0%, 100% {
+            transform: translateY(0px);
+          }
+          50% {
+            transform: translateY(-20px);
+          }
+        }
+
+        @keyframes animation-pulse-slow {
+          0%, 100% {
+            opacity: 0.5;
+          }
+          50% {
+            opacity: 1;
+          }
+        }
+
+        .bg-grid-pattern {
+          background-image: 
+            linear-gradient(rgba(0, 0, 0, 0.1) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(0, 0, 0, 0.1) 1px, transparent 1px);
+          background-size: 40px 40px;
+        }
+
+        .animation-float {
+          animation: animation-float 3s ease-in-out infinite;
+        }
+
+        .animation-pulse-slow {
+          animation: animation-pulse-slow 4s ease-in-out infinite;
+        }
+      `}</style>
     </div>
   );
 };

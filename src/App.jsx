@@ -6,6 +6,8 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Index from "./pages/Index.jsx";
 import Auth from "./pages/Auth.jsx";
 import Appointments from "./pages/Appointments.jsx";
+import Notifications from "./pages/Notifications.jsx";
+import Settings from "./pages/Settings.jsx";
 import NotFound from "./pages/NotFound.jsx";
 
 const queryClient = new QueryClient();
@@ -20,6 +22,8 @@ const App = () => (
           <Route path="/" element={<Index />} />
           <Route path="/auth" element={<Auth />} />
           <Route path="/appointments" element={<Appointments />} />
+          <Route path="/notifications" element={<Notifications />} />
+          <Route path="/settings" element={<Settings />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
