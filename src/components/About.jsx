@@ -1,10 +1,11 @@
 import { Users, Award, Wrench, ThumbsUp, CheckCircle2, Star } from "lucide-react";
+import { motion } from "framer-motion";
 import subLogo from "../assets/best-quality.png";
 
 const About = () => {
   const stats = [
     { icon: Users, value: "5000+", label: "Happy Customers" },
-    { icon: Award, value: "15+", label: "Years Experience" },
+    { icon: Award, value: "24+", label: "Years Experience" },
     { icon: Wrench, value: "50+", label: "Services Offered" },
     { icon: ThumbsUp, value: "99%", label: "Satisfaction Rate" },
   ];
@@ -17,13 +18,19 @@ const About = () => {
   ];
 
   return (
-    <section id="about" className="py-20 bg-gradient-to-b from-white via-slate-50 to-white relative overflow-hidden">
+    <section id="about" className="pt-4 pb-24 bg-gradient-to-b from-white via-slate-50 to-white relative overflow-hidden">
       {/* Advanced Animated Background Elements */}
 
       <div className="container mx-auto px-4 relative z-10">
         <div className="grid lg:grid-cols-2 gap-16 items-center">
           {/* Left Column - Image with Decorative Elements */}
-          <div className="relative flex justify-center items-center order-2 lg:order-1 opacity-0 animate-fade-in-left" style={{ animationDelay: "0.1s" }}>
+          <motion.div
+            className="relative flex justify-center items-center order-2 lg:order-1"
+            initial={{ opacity: 0, x: -30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+          >
             {/* Advanced Decorative Background Shapes */}
             <div className="absolute inset-0 flex items-center justify-center">
               <div className="absolute w-64 h-64 border-4 border-yellow-400/15 rounded-full animation-rotate-slow" />
@@ -47,35 +54,51 @@ const About = () => {
             </div>
 
             {/* Floating Decorative Badges with Animations */}
-            <div className="absolute -bottom-2 right-4 sm:right-8 bg-gradient-to-r from-yellow-100 to-yellow-50 px-6 py-4 rounded-xl font-bold text-cyan-900 text-xs sm:text-sm tracking-widest shadow-lg backdrop-blur-md border border-yellow-200/50 opacity-0 animate-fade-in-up"
-              style={{ animationDelay: "0.3s" }}>
+            <motion.div
+              className="absolute -bottom-2 right-4 sm:right-8 bg-gradient-to-r from-yellow-100 to-yellow-50 px-6 py-4 rounded-xl font-bold text-cyan-900 text-xs sm:text-sm tracking-widest shadow-lg backdrop-blur-md border border-yellow-200/50"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 0.8, ease: "easeOut", delay: 0.3 }}
+            >
               <div className="flex items-center gap-2">
                 <Star className="w-4 h-4 text-yellow-500 animate-pulse" />
                 <div>
                   ONLINE <br className="sm:hidden" /> SERVICE
                 </div>
               </div>
-            </div>
+            </motion.div>
 
-            <div className="absolute top-8 -left-6 bg-gradient-to-br from-cyan-100 to-cyan-50 p-4 rounded-xl backdrop-blur-md shadow-lg opacity-0 animate-fade-in-left border border-cyan-200/50"
-              style={{ animationDelay: "0.4s" }}>
+            <motion.div
+              className="absolute top-8 -left-6 bg-gradient-to-br from-cyan-100 to-cyan-50 p-4 rounded-xl backdrop-blur-md shadow-lg border border-cyan-200/50"
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 0.8, ease: "easeOut", delay: 0.4 }}
+            >
               <CheckCircle2 className="w-7 h-7 text-cyan-700" />
-            </div>
-          </div>
+            </motion.div>
+          </motion.div>
 
           {/* Right Column - Content */}
-          <div className="order-1 lg:order-2 space-y-8 opacity-0 animate-fade-in-right" style={{ animationDelay: "0.1s" }}>
+          <motion.div
+            className="order-1 lg:order-2 space-y-8"
+            initial={{ opacity: 0, x: 30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+          >
             {/* Section Badge */}
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-yellow-100/50 border border-yellow-300/50 backdrop-blur-sm opacity-0 animate-fade-in"
-              style={{ animationDelay: "0.15s" }}>
-              <div className="w-2 h-2 bg-yellow-500 rounded-full animate-pulse" />
-              <span className="text-xs sm:text-sm font-semibold text-yellow-700 uppercase tracking-widest">
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-cyan-50 border border-cyan-300/50 backdrop-blur-sm"
+              >
+              <div className="w-2 h-2 bg-cyan-500 rounded-full animate-pulse" />
+              <span className="text-xs sm:text-sm font-semibold text-cyan-700 uppercase tracking-widest">
                 About Our Company
               </span>
             </div>
 
             {/* Main Heading */}
-            <div className="space-y-3 opacity-0 animate-fade-in" style={{ animationDelay: "0.2s" }}>
+            <div className="space-y-3">
               <h2 className="font-serif text-4xl sm:text-5xl lg:text-6xl leading-tight">
                 <span className="text-cyan-700 font-bold">The Best</span>
                 <br />
@@ -84,7 +107,7 @@ const About = () => {
             </div>
 
             {/* Company Description */}
-            <div className="space-y-4 opacity-0 animate-fade-in" style={{ animationDelay: "0.3s" }}>
+            <div className="space-y-4">
               <p className="text-base sm:text-lg text-gray-700 leading-relaxed font-light">
                 With over 15 years of excellence in the automotive industry, CH Automobile has built a reputation for reliability, expertise, and uncompromising customer satisfaction.
               </p>
@@ -94,7 +117,7 @@ const About = () => {
             </div>
 
             {/* Highlights List */}
-            <div className="space-y-3 opacity-0 animate-fade-in" style={{ animationDelay: "0.4s" }}>
+            <div className="space-y-3">
               {highlights.map((highlight, index) => (
                 <div
                   key={index}
@@ -107,12 +130,11 @@ const About = () => {
             </div>
 
             {/* Stats Grid */}
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-4 opacity-0 animate-fade-in" style={{ animationDelay: "0.5s" }}>
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-4">
               {stats.map((stat, index) => (
                 <div
                   key={index}
                   className="text-center p-4 bg-gradient-to-br from-cyan-50 to-yellow-50 rounded-xl border border-cyan-200/50 hover:border-cyan-400/50 hover:shadow-lg transition-all duration-300 group"
-                  style={{ animationDelay: `${0.5 + index * 0.05}s` }}
                 >
                   <stat.icon className="w-6 h-6 sm:w-8 sm:h-8 text-cyan-600 mx-auto mb-2 group-hover:scale-110 transition-transform" />
                   <div className="font-display text-xl sm:text-2xl text-cyan-900 font-bold">{stat.value}</div>
@@ -122,7 +144,7 @@ const About = () => {
             </div>
 
             {/* Expert Team Section */}
-            <div className="pt-4 border-t border-cyan-200/30 opacity-0 animate-fade-in" style={{ animationDelay: "0.6s" }}>
+            <div className="pt-4 border-t border-cyan-200/30">
               <div className="flex items-center gap-4">
                 <div className="flex -space-x-3">
                   {[1, 2, 3, 4].map((i) => (
@@ -140,7 +162,7 @@ const About = () => {
                 </div>
               </div>
             </div>
-          </div>
+          </motion.div>
         </div>
       </div>
 

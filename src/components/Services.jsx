@@ -1,51 +1,131 @@
-import { Wrench, Cog, CheckCircle, Zap, Shield, Clock } from "lucide-react";
-import SubLogo from "../assets/SubLogo.png";
+import React, { useRef, useState } from "react";
+import { Clock, MapPin, ChefHat, Wine, Wrench, Zap, Settings, AlertCircle, Cog, Shield, Droplet, CheckCircle, Wind, Gauge, Battery, Sparkles } from "lucide-react";
+import { motion, useInView } from "framer-motion";
+import baseResturent from "../assets/expert-repair.png";
+import skyResturent from "../assets/maintenance.png";
 
 const Services = () => {
+  const ref = useRef(null);
+  const [hoveredCard, setHoveredCard] = useState(null);
+  const isInView = useInView(ref, { once: true, margin: "-100px" });
+
+  const generalServices = [
+    {
+      title: "Running Repairs",
+      icon: Wrench,
+      description: "Quick fixes for immediate vehicle issues",
+      color: "cyan",
+    },
+    {
+      title: "Engine Tune-ups",
+      icon: Zap,
+      description: "Optimize engine performance and efficiency",
+      color: "cyan",
+    },
+    {
+      title: "Unit Repairs",
+      icon: Settings,
+      description: "Engine, transmission units, starters, alternators",
+      color: "cyan",
+    },
+    {
+      title: "Suspension Repairs",
+      icon: AlertCircle,
+      description: "Complete suspension system maintenance",
+      color: "cyan",
+    },
+    {
+      title: "Electronic Diagnostics",
+      icon: Cog,
+      description: "High-tech electronic diagnostic services",
+      color: "cyan",
+    },
+    {
+      title: "Key Programming",
+      icon: Shield,
+      description: "Professional key programming services",
+      color: "cyan",
+    },
+  ];
+
+  const periodicServices = [
+    {
+      title: "Express Maintenance",
+      icon: Clock,
+      description: "Quick and efficient service on the go",
+      color: "amber",
+    },
+    {
+      title: "Oil & Filter",
+      icon: Droplet,
+      description: "Ensure smooth engine operation",
+      color: "amber",
+    },
+    {
+      title: "Vehicle Inspection",
+      icon: CheckCircle,
+      description: "Detailed analysis of vehicle condition",
+      color: "amber",
+    },
+    {
+      title: "AC Filter",
+      icon: Wind,
+      description: "Keep air conditioning clean and efficient",
+      color: "amber",
+    },
+    {
+      title: "Tire Pressure",
+      icon: Gauge,
+      description: "Optimal tire performance and safety",
+      color: "amber",
+    },
+    {
+      title: "Battery & Brake",
+      icon: Battery,
+      description: "Electrical and braking system maintenance",
+      color: "amber",
+    },
+    {
+      title: "Road Test",
+      icon: Sparkles,
+      description: "System verification and car appearance",
+      color: "amber",
+    },
+  ];
+
   const services = [
     {
-      number: "01",
-      title: "Online Booking",
-      icon: Clock,
+      id: 1,
+      name: "General Repair Services",
+      subtitle: "Expert Solutions",
       description:
-        "Book your appointment online in just a few clicks. Select your preferred date and service type for instant confirmation.",
-      details: ["Quick booking", "Flexible scheduling", "Instant confirmation"],
+        "From quick running repairs to complex engine work, our certified technicians handle all your general automotive repair needs with precision and expertise.",
+      image: baseResturent,
+      features: ["Engine Repairs", "Diagnostics", "Key Programming"],
     },
     {
-      number: "02",
-      title: "General Repairs",
-      icon: Wrench,
+      id: 2,
+      name: "Periodic Services",
+      subtitle: "Preventive Care",
       description:
-        "Complete diagnostic and repair services for all vehicle makes and models with certified mechanics.",
-      details: [
-        "Expert diagnostics",
-        "All vehicle types",
-        "Quality guaranteed",
-      ],
-    },
-    {
-      number: "03",
-      title: "Engine Service",
-      icon: Zap,
-      description:
-        "Expert engine diagnostics, tune-ups, and performance optimization for peak efficiency.",
-      details: ["Performance tuning", "Diagnostics", "Maintenance"],
+        "Regular maintenance is key to keeping your vehicle running smoothly. Our preventive care services help you avoid costly repairs and extend the life of your car.",
+      image: skyResturent,
+      features: ["Oil Changes", "Inspections", "Tire Pressure"],
     },
   ];
 
   return (
-    <section id="services" className="py-20 bg-gradient-to-b from-white via-slate-50 to-white relative overflow-hidden">
-      {/* Advanced Animated Background Elements */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-0 right-0 w-96 h-96 bg-yellow-100/30 rounded-full blur-3xl animate-pulse opacity-80" />
-        <div className="absolute bottom-0 left-0 w-80 h-80 bg-cyan-600/10 rounded-full blur-3xl animation-pulse-slow" />
-        <div className="absolute top-1/2 right-1/4 w-64 h-64 bg-yellow-300/5 rounded-full blur-3xl animation-float" />
-        
-        {/* Grid Pattern Background */}
-        <div className="absolute inset-0 bg-grid-pattern opacity-3" />
+    <section
+      id="services"
+      className="relative py-4 bg-gradient-to-br from-slate-50 via-gray-50 to-white overflow-hidden"
+    >
+      {/* Background Elements */}
+      <div className="absolute inset-0">
+        <div className="absolute top-1/4 -left-40 w-80 h-80 bg-gradient-to-r from-hotel-gold/20 to-transparent rounded-full blur-3xl"></div>
+        <div className="absolute bottom-1/4 -right-40 w-96 h-96 bg-gradient-to-l from-hotel-accent/20 to-transparent rounded-full blur-3xl"></div>
       </div>
 
-      <div className="container mx-auto px-4 relative z-10">
+      <div className="container mx-auto px-6 relative z-10">
         {/* Section Header */}
         <div className="max-w-4xl mx-auto mb-16 text-center opacity-0 animate-fade-in">
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-cyan-100/50 border border-cyan-300/50 backdrop-blur-sm mb-6">
@@ -56,243 +136,162 @@ const Services = () => {
           </div>
           
           <h2 className="font-serif text-4xl sm:text-5xl lg:text-6xl mb-6">
-            <span className="text-cyan-700 font-bold">Best Quality</span>
+            <span className="text-cyan-700 font-bold">What We Do</span>
             <br />
-            <span className="text-gray-900 font-bold">Service Solutions</span>
+            <span className="text-gray-900 font-bold">For You</span>
           </h2>
           
-          <p className="text-base sm:text-lg text-gray-600 leading-relaxed max-w-2xl mx-auto">
+          <p className="text-base sm:text-lg text-gray-600 leading-relaxed max-w-4xl mx-auto">
             We provide comprehensive automotive care services to keep your vehicle in peak condition with our team of certified professionals and industry-leading expertise.
           </p>
         </div>
 
-        <div className="grid lg:grid-cols-2 gap-16 items-center mb-24">
-          {/* Left Column - Services List */}
-          <div className="space-y-8 opacity-0 animate-fade-in-left" style={{ animationDelay: "0.1s" }}>
-            {/* Service Items */}
-            <div className="space-y-6">
-              {services.map((service, index) => (
-                <div
-                  key={index}
-                  className="group cursor-pointer opacity-0 animate-fade-in"
-                  style={{ animationDelay: `${0.2 + index * 0.1}s` }}
+        {/* Featured services */}
+        <div className="space-y-24 mb-32">
+          {services.map((restaurant, index) => {
+            const serviceList = index === 0 ? generalServices : periodicServices;
+            const colorClass = index === 0 ? "cyan" : "amber";
+            const colorBg = colorClass === "cyan" ? "from-cyan-50 to-blue-50" : "from-amber-50 to-yellow-50";
+            const colorIcon = colorClass === "cyan" ? "text-cyan-600" : "text-amber-600";
+            const colorBorder = colorClass === "cyan" ? "border-cyan-200 text-cyan-700" : "border-amber-200 text-amber-700";
+
+            return (
+              <div key={restaurant.id}>
+                {/* Main Service Card */}
+                <motion.div
+                  initial={{ opacity: 0, x: index % 2 === 0 ? -100 : 100 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.8, delay: index * 0.2 }}
+                  viewport={{ once: true, amount: 0.3 }}
+                  className={`grid lg:grid-cols-2 gap-16 items-center mb-8 ${
+                    index % 2 === 1 ? "lg:grid-flow-col-dense" : ""
+                  }`}
                 >
-                  <div className="relative p-6 rounded-xl bg-white border border-gray-200/50 hover:border-cyan-300/50 transition-all duration-300 hover:shadow-lg hover:shadow-cyan-500/10">
-                    {/* Animated Background on Hover */}
-                    <div className="absolute inset-0 bg-gradient-to-r from-cyan-50/0 to-yellow-50/0 group-hover:from-cyan-50 group-hover:to-yellow-50/50 rounded-xl transition-all duration-300" />
-                    
-                    <div className="relative flex gap-6">
-                      {/* Number Badge */}
-                      <div className="flex-shrink-0">
-                        <div className="flex items-center justify-center w-14 h-14 rounded-full bg-gradient-to-br from-cyan-600 to-cyan-800 text-white font-display text-lg font-bold shadow-lg group-hover:scale-110 group-hover:shadow-xl transition-all duration-300">
-                          {service.number}
-                        </div>
-                      </div>
+                  {/* Image Section */}
+                  <div
+                    className={`relative group ${
+                      index % 2 === 1 ? "lg:col-start-2" : ""
+                    }`}
+                    onMouseEnter={() => setHoveredCard(restaurant.id)}
+                    onMouseLeave={() => setHoveredCard(null)}
+                  >
+                    <div className="relative h-72 md:h-96 lg:h-[400px] rounded-3xl overflow-hidden shadow-2xl">
+                      <img
+                        src={restaurant.image}
+                        alt={restaurant.name}
+                        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                      />
 
-                      <div className="flex-grow">
-                        {/* Service Title with Icon */}
-                        <div className="flex items-center gap-3 mb-2">
-                          <h3 className="font-serif text-xl text-cyan-900 uppercase tracking-wide font-bold">
-                            {service.title}
-                          </h3>
-                          <service.icon className="w-5 h-5 text-yellow-500 group-hover:translate-x-1 transition-transform" />
-                        </div>
+                      {/* Gradient Overlay */}
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-transparent to-transparent"></div>
 
-                        {/* Description */}
-                        <p className="text-gray-600 mb-4 leading-relaxed text-sm">
-                          {service.description}
-                        </p>
-
-                        {/* Details Tags */}
-                        <div className="flex flex-wrap gap-3">
-                          {service.details.map((detail, i) => (
-                            <div
-                              key={i}
-                              className="flex items-center gap-2 px-3 py-2 rounded-lg bg-gradient-to-r from-cyan-50 to-yellow-50 border border-cyan-200/50 group-hover:border-cyan-300 transition-all"
-                            >
-                              <CheckCircle className="w-4 h-4 text-cyan-600 flex-shrink-0" />
-                              <span className="text-xs sm:text-sm text-cyan-700 font-medium">
-                                {detail}
-                              </span>
-                            </div>
-                          ))}
+                      {/* Bottom Info */}
+                      <div className="absolute bottom-8 left-8 right-8">
+                        <div className="flex items-center justify-between text-white">
+                          <div>
+                            <h3 className="font-serif text-3xl font-inter font-bold mb-1">
+                              {restaurant.name}
+                            </h3>
+                            <p className="text-white/80 font-inter text-balance">
+                              {restaurant.subtitle}
+                            </p>
+                          </div>
                         </div>
                       </div>
                     </div>
+
+                    {/* Floating Elements */}
+                    <div
+                      className={`absolute -bottom-8 -right-8 w-24 h-24 bg-gradient-to-r ${colorBg} rounded-full opacity-20 group-hover:opacity-30 transition-opacity duration-500`}
+                    ></div>
+                    <div
+                      className={`absolute -top-8 -left-8 w-16 h-16 bg-gradient-to-r ${colorBg} rounded-full opacity-10 group-hover:opacity-20 transition-opacity duration-500`}
+                    ></div>
                   </div>
-                </div>
-              ))}
-            </div>
-          </div>
 
-          {/* Right Column - Image with Decorative Elements */}
-          <div className="relative flex justify-center items-center opacity-0 animate-fade-in-right" style={{ animationDelay: "0.1s" }}>
-            {/* Advanced Decorative Background Shapes */}
-            <div className="absolute inset-0 flex items-center justify-center">
-              <div className="absolute w-64 h-64 border-4 border-cyan-400/10 rounded-full animation-rotate-slow" />
-              <div className="absolute w-80 h-80 border-2 border-yellow-400/15 rounded-full animation-pulse-slow" />
-              <div className="absolute w-96 h-96 border border-cyan-600/5 rounded-full animation-float" />
-            </div>
+                  {/* Content Section */}
+                  <div
+                    className={`space-y-8 ${
+                      index % 2 === 1 ? "lg:col-start-1" : ""
+                    }`}
+                  >
+                    <div className="space-y-6">
+                      <div className="flex items-center space-x-4">
+                        <div
+                          className={`w-12 h-12 bg-gradient-to-r ${colorBg} rounded-2xl flex items-center justify-center shadow-lg`}
+                        >
+                          <Wrench className={`w-7 h-7 ${colorIcon}`} />
+                        </div>
+                        <div>
+                          <h3 className="font-display text-4xl font-bold text-custom_purple-900">
+                            {restaurant.name}
+                          </h3>
+                          <p className="text-sm text-slate-600">
+                            {restaurant.subtitle}
+                          </p>
+                        </div>
+                      </div>
 
-            {/* Circular Image with Premium Styling */}
-            <div className="relative w-72 h-72 sm:w-80 sm:h-80 rounded-full overflow-hidden justify-center flex items-center border-4 border-cyan-600 shadow-2xl z-10 group hover:shadow-cyan-500/30 transition-shadow duration-300"
-              style={{
-                boxShadow: "0 0 60px rgba(13, 148, 136, 0.2), inset 0 0 40px rgba(0, 0, 0, 0.05)"
-              }}>
-              <img
-                src={SubLogo}
-                alt="Our Services"
-                className="w-auto object-cover mr-4 group-hover:scale-105 transition-transform duration-700"
-              />
-              
-              {/* Gradient Overlay */}
-              <div className="absolute inset-0 bg-gradient-to-br from-cyan-950/10 via-transparent to-yellow-900/10" />
-            </div>
+                      <p className="text-base font-body text-slate-700 leading-relaxed">
+                        {restaurant.description}
+                      </p>
 
-            {/* Floating Decorative Elements with Animations */}
-            <div className="absolute top-8 right-4 sm:right-8 bg-gradient-to-br from-yellow-100 to-yellow-50 p-4 rounded-xl shadow-lg backdrop-blur-md opacity-0 animate-fade-in-right border border-yellow-200/50"
-              style={{ animationDelay: "0.3s" }}>
-              <Cog className="w-7 h-7 text-yellow-600 animate-spin-slow" />
-            </div>
-
-            <div className="absolute bottom-16 left-2 sm:left-0 bg-gradient-to-r from-cyan-700 to-cyan-800 px-4 py-3 rounded-xl text-white text-xs font-bold backdrop-blur shadow-lg opacity-0 animate-fade-in-up text-center border border-cyan-600/50"
-              style={{ animationDelay: "0.4s" }}>
-              <div className="flex items-center gap-2">
-                <Clock className="w-4 h-4" />
-                <span>24/7 SERVICE</span>
+                      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-4">
+                        {serviceList.map((service, idx) => {
+                          const ServiceIcon = service.icon;
+                          const isGeneral = colorClass === "cyan";
+                          const borderColor = "border-l-cyan-500"
+                          const bgAccent = "bg-gradient-to-r from-cyan-50 to-yellow-50 border border-cyan-200/50";
+                          const iconBg = "bg-cyan-100 text-cyan-600";
+                          const titleColor =  "text-cyan-950";
+                          const hoverBorder = "group-hover:border-cyan-300";
+                          
+                          return (
+                            <motion.div
+                              key={idx}
+                              initial={{ opacity: 0, y: 16 }}
+                              whileInView={{ opacity: 1, y: 0 }}
+                              transition={{ duration: 0.4, delay: idx * 0.1 }}
+                              viewport={{ once: true, amount: 0.3 }}
+                              className={`group relative flex gap-4 p-2 rounded-xl border-l-4 ${borderColor} ${bgAccent} backdrop-blur-sm border border-r-transparent border-t-transparent border-b-transparent ${hoverBorder} hover:shadow-lg hover:scale-105 transition-all duration-300 cursor-pointer bg-white/50 overflow-hidden`}
+                            >
+                              {/* Shimmer background effect on hover */}
+                              <div className={`absolute inset-0 bg-gradient-to-r from-transparent via-white/40 to-transparent transform -translate-x-full group-hover:translate-x-full transition-transform duration-500`}></div>
+                              
+                              <div className={`flex-shrink-0 w-8 h-8 rounded-lg ${iconBg} flex items-center justify-center group-hover:scale-110 group-hover:rotate-6 transition-all duration-300`}>
+                                <ServiceIcon className="w-4 h-4 group-hover:animate-pulse" />
+                              </div>
+                              
+                              <div className="flex-1 min-w-0 relative z-10">
+                                <h4 className={`font-bold text-sm leading-tight ${titleColor} line-clamp-1 mb-1`}>
+                                  {service.title}
+                                </h4>
+                                <p className="text-xs text-slate-600 line-clamp-2 leading-relaxed">
+                                  {service.description}
+                                </p>
+                                
+                                {/* Animated underline */}
+                                <div className="h-0.5 mt-2 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left bg-cyan-400"></div>
+                              </div>
+                              
+                              {/* Hover indicator arrow */}
+                              <div className="flex-shrink-0 w-5 h-5 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 relative z-10 text-cyan-500">
+                                <svg className="w-5 h-5 group-hover:translate-x-1 group-hover:animate-bounce transition-all" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                                </svg>
+                              </div>
+                            </motion.div>
+                          );
+                        })}
+                      </div>
+                    </div>
+                  </div>
+                </motion.div>
               </div>
-            </div>
-
-            <div className="absolute top-1/3 -right-8 bg-gradient-to-br from-cyan-100 to-cyan-50 p-3 rounded-xl backdrop-blur-md shadow-lg opacity-0 animate-fade-in-left border border-cyan-200/50"
-              style={{ animationDelay: "0.5s" }}>
-              <Shield className="w-6 h-6 text-cyan-700" />
-            </div>
-          </div>
+            );
+          })}
         </div>
       </div>
-
-      <style>{`
-        @keyframes animation-float {
-          0%, 100% {
-            transform: translateY(0px);
-          }
-          50% {
-            transform: translateY(-20px);
-          }
-        }
-
-        @keyframes animation-pulse-slow {
-          0%, 100% {
-            opacity: 0.5;
-          }
-          50% {
-            opacity: 1;
-          }
-        }
-
-        @keyframes animation-rotate-slow {
-          from {
-            transform: rotate(0deg);
-          }
-          to {
-            transform: rotate(360deg);
-          }
-        }
-
-        @keyframes animate-spin-slow {
-          from {
-            transform: rotate(0deg);
-          }
-          to {
-            transform: rotate(360deg);
-          }
-        }
-
-        @keyframes animate-fade-in-left {
-          from {
-            opacity: 0;
-            transform: translateX(-30px);
-          }
-          to {
-            opacity: 1;
-            transform: translateX(0);
-          }
-        }
-
-        @keyframes animate-fade-in-right {
-          from {
-            opacity: 0;
-            transform: translateX(30px);
-          }
-          to {
-            opacity: 1;
-            transform: translateX(0);
-          }
-        }
-
-        @keyframes animate-fade-in-up {
-          from {
-            opacity: 0;
-            transform: translateY(20px);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
-        }
-
-        @keyframes animate-fade-in {
-          from {
-            opacity: 0;
-          }
-          to {
-            opacity: 1;
-          }
-        }
-
-        .bg-grid-pattern {
-          background-image: 
-            linear-gradient(rgba(0, 0, 0, 0.1) 1px, transparent 1px),
-            linear-gradient(90deg, rgba(0, 0, 0, 0.1) 1px, transparent 1px);
-          background-size: 40px 40px;
-        }
-
-        .animation-float {
-          animation: animation-float 3s ease-in-out infinite;
-        }
-
-        .animation-pulse-slow {
-          animation: animation-pulse-slow 4s ease-in-out infinite;
-        }
-
-        .animation-rotate-slow {
-          animation: animation-rotate-slow 8s linear infinite;
-        }
-
-        .animate-spin-slow {
-          animation: animate-spin-slow 4s linear infinite;
-        }
-
-        .animate-fade-in-left {
-          animation: animate-fade-in-left 0.8s ease-out forwards;
-        }
-
-        .animate-fade-in-right {
-          animation: animate-fade-in-right 0.8s ease-out forwards;
-        }
-
-        .animate-fade-in-up {
-          animation: animate-fade-in-up 0.8s ease-out forwards;
-        }
-
-        .animate-fade-in {
-          animation: animate-fade-in 0.8s ease-out forwards;
-        }
-
-        .group:hover {
-          background: linear-gradient(135deg, rgba(0, 0, 0, 0.02) 0%, rgba(0, 0, 0, 0.01) 100%);
-        }
-      `}</style>
     </section>
   );
 };

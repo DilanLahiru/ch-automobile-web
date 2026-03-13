@@ -20,7 +20,7 @@ const Footer = () => {
   const contactDetails = [
     { icon: Phone, text: "+94 (71) 427 4163" },
     { icon: Mail, text: "info@chautomobile.com" },
-    { icon: MapPin, text: "304 A Abaya Street, Kalutara" },
+    { icon: MapPin, text: "304 A Abhaya Street, Nagoda, Kalutara" },
   ];
 
   const scrollToTop = () => {
@@ -140,7 +140,7 @@ const Footer = () => {
                 <p className="text-xs font-semibold text-gray-400 uppercase tracking-widest mb-2">Working Hours</p>
                 <div className="text-sm text-gray-300 space-y-1">
                   <p>Mon - Sat: 8:00 AM - 5:00 PM</p>
-                  <p>Sunday: Closed</p>
+                  <p>Sundays and Poya days closed</p>
                 </div>
               </div>
             </div>

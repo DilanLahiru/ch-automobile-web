@@ -12,7 +12,7 @@ import {
 } from "lucide-react";
 import { motion } from "framer-motion";
 import { useRef, useEffect, useState } from "react";
-import heroBg from "../assets/hero-bg.jpg";
+import heroBg from "../assets/hero-bgs.png";
 
 // Luxury easing curves
 const easeLuxury = [0.16, 1, 0.3, 1];
@@ -148,7 +148,7 @@ const Hero = () => {
                 className="w-2.5 h-2.5 bg-gradient-to-r from-cyan-400 to-blue-500 rounded-full"
               />
               <span className="text-xs tracking-[0.2em] uppercase text-cyan-950 font-semibold">
-                Trusted Since 2012
+                Trusted Since 2002
               </span>
               <Award className="w-4 h-4 text-cyan-400" />
             </motion.div>
@@ -218,22 +218,24 @@ const Hero = () => {
                 className="relative group"
               >
                 <div className="absolute -inset-1 bg-gradient-to-r from-cyan-500 to-blue-500 rounded-xl blur-lg opacity-50 group-hover:opacity-100 transition duration-500" />
-                <Button className="relative px-8 py-6 text-base font-semibold bg-gradient-to-r from-cyan-500 to-cyan-800 text-white rounded-xl shadow-2xl transition-all duration-300 overflow-hidden">
-                  <span className="relative z-10 flex items-center">
-                    BOOK SERVICE
-                    <motion.span
-                      animate={{ x: [0, 5, 0] }}
-                      transition={{ duration: 1.5, repeat: Infinity }}
-                    >
-                      <ArrowRight className="ml-2 w-5 h-5" />
-                    </motion.span>
-                  </span>
-                  <motion.div
-                    initial={{ x: "-100%" }}
-                    whileHover={{ x: "100%" }}
-                    transition={{ duration: 0.5 }}
-                    className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent"
-                  />
+                <Button asChild className="relative px-8 py-6 text-base font-semibold bg-gradient-to-r from-cyan-500 to-cyan-800 text-white rounded-xl shadow-2xl transition-all duration-300 overflow-hidden cursor-pointer">
+                  <a href="#booking">
+                    <span className="relative z-10 flex items-center">
+                      BOOK SERVICE
+                      <motion.span
+                        animate={{ x: [0, 5, 0] }}
+                        transition={{ duration: 1.5, repeat: Infinity }}
+                      >
+                        <ArrowRight className="ml-2 w-5 h-5" />
+                      </motion.span>
+                    </span>
+                    <motion.div
+                      initial={{ x: "-100%" }}
+                      whileHover={{ x: "100%" }}
+                      transition={{ duration: 0.5 }}
+                      className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent"
+                    />
+                  </a>
                 </Button>
               </motion.div>
 
@@ -242,10 +244,13 @@ const Hero = () => {
                 whileTap={{ scale: 0.95 }}
               >
                 <Button
+                  asChild
                   variant="outline"
-                  className="px-8 py-6 text-base font-semibold border-2 border-cyan-700 text-cyan-600 hover:bg-cyan-50 hover:text-cyan-700 rounded-xl shadow-2xl transition-all duration-300 backdrop-blur-sm"
+                  className="px-8 py-6 text-base font-semibold border-2 border-cyan-700 text-cyan-600 hover:bg-cyan-50 hover:text-cyan-700 rounded-xl shadow-2xl transition-all duration-300 backdrop-blur-sm cursor-pointer"
                 >
-                  EXPLORE SERVICES
+                  <a href="#services">
+                    EXPLORE SERVICES
+                  </a>
                 </Button>
               </motion.div>
             </motion.div>
@@ -306,7 +311,7 @@ const Hero = () => {
                   className="absolute top-8 left-8 backdrop-blur-xl bg-white/10 border border-white/20 rounded-2xl px-6 py-4 shadow-2xl"
                 >
                   <p className="text-xs text-white/60 uppercase tracking-wider">Experience</p>
-                  <p className="text-2xl font-bold text-white">12+ Years</p>
+                  <p className="text-2xl font-bold text-white">23+ Years</p>
                 </motion.div>
 
                 <motion.div

@@ -205,6 +205,7 @@
 // export default Booking;
 
 import { useState } from "react";
+import { motion } from "framer-motion";
 import { Button } from "./ui/button";
 import { Input } from "./ui/input";
 import { Calendar } from "./ui/calendar";
@@ -369,26 +370,20 @@ const Booking = () => {
       className="py-20 bg-gradient-to-b from-white via-slate-50 to-white relative overflow-hidden"
     >
       {/* Advanced Animated Background Elements */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-0 right-0 w-96 h-96 bg-cyan-600/15 rounded-full blur-3xl animate-pulse opacity-80" />
-        <div className="absolute -bottom-40 left-0 w-80 h-80 bg-yellow-400/10 rounded-full blur-3xl animation-pulse-slow" />
-        <div className="absolute top-1/2 right-1/4 w-64 h-64 bg-cyan-400/5 rounded-full blur-3xl animation-float" />
-
-        {/* Grid Pattern Background */}
-        <div className="absolute inset-0 bg-grid-pattern opacity-3" />
-      </div>
 
       <div className="container mx-auto px-4 relative z-10">
-        <div className="grid lg:grid-cols-2 gap-16 items-start">
+        <motion.div
+          className="grid lg:grid-cols-2 gap-16 items-start"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
+        >
           {/* Left Content */}
-          <div
-            className="space-y-8 opacity-0 animate-fade-in-left"
-            style={{ animationDelay: "0.1s" }}
-          >
+          <div className="space-y-8">
             {/* Section Badge */}
             <div
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-cyan-100/50 border border-cyan-300/50 backdrop-blur-sm opacity-0 animate-fade-in"
-              style={{ animationDelay: "0.15s" }}
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-cyan-100/50 border border-cyan-300/50 backdrop-blur-sm"
             >
               <div className="w-2 h-2 bg-cyan-600 rounded-full animate-pulse" />
               <span className="text-xs sm:text-sm font-semibold text-cyan-700 uppercase tracking-widest">
@@ -397,10 +392,7 @@ const Booking = () => {
             </div>
 
             {/* Main Heading */}
-            <div
-              className="space-y-3 opacity-0 animate-fade-in"
-              style={{ animationDelay: "0.2s" }}
-            >
+            <div className="space-y-3">
               <h2 className="font-serif text-4xl sm:text-5xl lg:text-6xl leading-tight">
                 <span className="text-cyan-700 font-bold">SCHEDULE YOUR</span>
                 <br />
@@ -409,9 +401,7 @@ const Booking = () => {
             </div>
 
             {/* Description */}
-            <p
-              className="text-base sm:text-lg text-gray-700 leading-relaxed opacity-0 animate-fade-in"
-              style={{ animationDelay: "0.3s" }}
+            <p className="text-base sm:text-lg text-gray-700 leading-relaxed"
             >
               Book your service appointment online in just a few clicks. Select
               your preferred date, time, and provide your vehicle details. Our
@@ -419,9 +409,7 @@ const Booking = () => {
             </p>
 
             {/* Features List */}
-            <div
-              className="space-y-4 opacity-0 animate-fade-in"
-              style={{ animationDelay: "0.4s" }}
+            <div className="space-y-4"
             >
               {[
                 { icon: Zap, text: "Quick online booking system" },
@@ -432,7 +420,6 @@ const Booking = () => {
                 <div
                   key={index}
                   className="flex items-center gap-3 p-4 rounded-lg bg-gradient-to-r from-cyan-50 to-yellow-50 border border-cyan-200/50 hover:border-cyan-300 transition-all group"
-                  style={{ animationDelay: `${0.4 + index * 0.05}s` }}
                 >
                   <item.icon className="w-5 h-5 text-cyan-700 flex-shrink-0 group-hover:text-yellow-600 transition-colors" />
                   <span className="text-sm font-medium text-gray-800">
@@ -444,10 +431,7 @@ const Booking = () => {
           </div>
 
           {/* Booking Form */}
-          <div
-            className="opacity-0 animate-fade-in-right"
-            style={{ animationDelay: "0.1s" }}
-          >
+          <div>
             <div
               className="sticky top-24 bg-gradient-to-br from-white to-slate-50 rounded-2xl p-8 border-2 border-cyan-200/50 shadow-2xl backdrop-blur-sm hover:shadow-cyan-500/10 transition-all duration-300"
               style={{
@@ -682,8 +666,8 @@ const Booking = () => {
               </form>
             </div>
           </div>
+          </motion.div>
         </div>
-      </div>
 
       <style>{`
         @keyframes animation-float {
