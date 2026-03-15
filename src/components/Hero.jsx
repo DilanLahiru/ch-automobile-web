@@ -8,11 +8,12 @@ import {
   Star,
   CheckCircle2,
   Sparkles,
-  Gauge
+  Gauge,
+  Mouse
 } from "lucide-react";
 import { motion } from "framer-motion";
 import { useRef, useEffect, useState } from "react";
-import heroBg from "../assets/hero-bgs.png";
+import heroBg from "../assets/hero-bg.jpg";
 
 // Luxury easing curves
 const easeLuxury = [0.16, 1, 0.3, 1];
@@ -387,8 +388,8 @@ const Hero = () => {
             transition={{ duration: 2, repeat: Infinity }}
             className="flex flex-col items-center gap-2 text-white/40"
           >
-            <span className="text-xs uppercase tracking-wider">Scroll</span>
-            <div className="w-0.5 h-8 bg-gradient-to-b from-cyan-500 to-transparent" />
+            <Mouse className="w-6 h-6 text-cyan-400" />
+            <span className="text-xs uppercase tracking-wider text-cyan-900 font-semibold">Scroll Down</span>
           </motion.div>
         </motion.div>
       )}

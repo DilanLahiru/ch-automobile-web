@@ -453,7 +453,7 @@ const Booking = () => {
                 {/* Personal Information Section */}
                 <div className="space-y-4">
                   <div className="flex items-center gap-2 mb-4">
-                    <div className="w-1 h-6 bg-gradient-to-b from-cyan-600 to-cyan-400 rounded-full" />
+                    <div className="w-1 h-6 bg-gradient-to-b from-cyan-500 to-cyan-400 rounded-full" />
                     <h4 className="font-semibold text-cyan-900 text-sm uppercase tracking-widest">
                       Personal Information
                     </h4>
@@ -506,7 +506,7 @@ const Booking = () => {
                 {/* Vehicle Details Section */}
                 <div className="space-y-4 pt-4 border-t border-cyan-200/30">
                   <div className="flex items-center gap-2 mb-4">
-                    <div className="w-1 h-6 bg-gradient-to-b from-yellow-500 to-yellow-400 rounded-full" />
+                    <div className="w-1 h-6 bg-gradient-to-b from-cyan-500 to-cyan-400 rounded-full" />
                     <h4 className="font-semibold text-cyan-900 text-sm uppercase tracking-widest">
                       Vehicle Details
                     </h4>
@@ -533,7 +533,7 @@ const Booking = () => {
                       </label>
                       <Input
                         type="text"
-                        placeholder="Camry, F-150, X5, etc."
+                        placeholder="Camry, Aqua, Fit"
                         value={vehicleModel}
                         onChange={(e) => setVehicleModel(e.target.value)}
                         className="bg-white border-cyan-600 transition-all"

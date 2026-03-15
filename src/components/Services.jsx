@@ -150,10 +150,9 @@ const Services = () => {
         <div className="space-y-24 mb-32">
           {services.map((restaurant, index) => {
             const serviceList = index === 0 ? generalServices : periodicServices;
-            const colorClass = index === 0 ? "cyan" : "amber";
+            const colorClass = index === 0 ? "cyan" : "cyan";
             const colorBg = colorClass === "cyan" ? "from-cyan-50 to-blue-50" : "from-amber-50 to-yellow-50";
-            const colorIcon = colorClass === "cyan" ? "text-cyan-600" : "text-amber-600";
-            const colorBorder = colorClass === "cyan" ? "border-cyan-200 text-cyan-700" : "border-amber-200 text-amber-700";
+            const colorIcon = colorClass === "text-cyan-600";
 
             return (
               <div key={restaurant.id}>
@@ -263,7 +262,7 @@ const Services = () => {
                               </div>
                               
                               <div className="flex-1 min-w-0 relative z-10">
-                                <h4 className={`font-bold text-sm leading-tight ${titleColor} line-clamp-1 mb-1`}>
+                                <h4 className={`font-bold text-sm leading-tight ${titleColor} line-clamp-1 mb-1 font-sans`}>
                                   {service.title}
                                 </h4>
                                 <p className="text-xs text-slate-600 line-clamp-2 leading-relaxed">
